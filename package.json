@@ -17,5 +17,11 @@
   "bugs": {
     "url": "https://github.com/KLEIEEECS-Bot/Pixel-Pirates/issues"
   },
-  "homepage": "https://github.com/KLEIEEECS-Bot/Pixel-Pirates#readme"
+  "homepage": "https://github.com/KLEIEEECS-Bot/Pixel-Pirates#readme",
+  "dependencies": {
+    "axios": "^1.12.2",
+    "canvas-confetti": "^1.9.3",
+    "chart.js": "^4.5.0",
+    "react-chartjs-2": "^5.3.0"
+  }
 }
