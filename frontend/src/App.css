@@ -1,261 +1,154 @@
-/* App.css - Pixelated Game + Moving Stars */
+/* src/App.css */
 
 
-/* Import Pixel Font */
+/* GLOBAL */
 
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
-/* Container with stars */
+body {
+    margin: 0;
+    padding: 0;
+    background: #1a1a1a;
+    font-family: 'Press Start 2P', cursive;
+    /* pixel font */
+    color: #fff;
+}
 
 .app-container {
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 900px;
+    margin: 20px auto;
     padding: 20px;
-    background: #0b0c2a;
-    /* solid dark background */
-    color: #fff;
-    font-family: 'Press Start 2P', monospace;
-    border: 4px solid #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 20px #00ffff, 0 0 40px #ff00ff;
-    position: relative;
-    text-shadow: 1px 1px #000;
+    background: #222;
+    border: 4px solid #00ff00;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #0f0;
+}
+
+
+/* HEADINGS */
+
+h1,
+h2,
+h3 {
+    text-shadow: 2px 2px #000;
+}
+
+
+/* PROFILE */
+
+.profile {
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #111;
+    border: 2px dashed #0f0;
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 20px;
+    background: #333;
+    border: 2px solid #0f0;
+    border-radius: 4px;
+    margin: 5px 0 10px;
     overflow: hidden;
 }
 
-
-/* Pixelated moving stars */
-
-.app-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+.progress-bar-fill {
     height: 100%;
-    background-image: radial-gradient(#fff 1px, transparent 1px);
-    background-size: 4px 4px;
-    animation: stars 10s linear infinite;
-    pointer-events: none;
-    z-index: 0;
+    background: linear-gradient(90deg, #0f0, #0f0a);
+    transition: width 0.5s;
 }
 
 
-/* Stars movement animation */
-
-@keyframes stars {
-    0% {
-        background-position: 0 0;
-    }
-    100% {
-        background-position: 0 100%;
-    }
-}
-
-
-/* Content on top of stars */
-
-.app-content {
-    position: relative;
-    z-index: 1;
-}
-
-
-/* Headings */
-
-h1 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #00ffff;
-    text-shadow: 2px 2px #ff00ff;
-    z-index: 2;
-}
-
-h2,
-h3 {
-    margin-top: 20px;
-    margin-bottom: 10px;
-    color: #ffcc00;
-    text-shadow: 1px 1px #000;
-}
-
-
-/* Inputs */
-
-input[type="text"],
-input[type="checkbox"] {
-    padding: 6px 10px;
-    border-radius: 0;
-    border: 2px solid #fff;
-    background: #000;
-    color: #0ff;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.7rem;
-    outline: none;
-    box-shadow: inset 0 0 3px #0ff;
-    position: relative;
-    z-index: 2;
-}
-
-
-/* Buttons */
-
-button {
-    padding: 8px 15px;
-    margin: 5px;
-    border: 2px solid #fff;
-    border-radius: 0;
-    background: #111;
-    color: #0ff;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.7rem;
-    cursor: pointer;
-    font-weight: bold;
-    text-shadow: 1px 1px #000;
-    transition: transform 0.1s, color 0.1s, box-shadow 0.1s;
-    position: relative;
-    z-index: 2;
-}
-
-button:hover {
-    transform: scale(1.1);
-    color: #ff0;
-    box-shadow: 0 0 5px #0ff, 0 0 10px #ff0;
-}
-
-button:active::after {
-    content: '';
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    width: calc(100% - 4px);
-    height: calc(100% - 4px);
-    border: 2px solid #ff0;
-    box-sizing: border-box;
-    pointer-events: none;
-}
-
-
-/* Workout item */
-
-.workout-item {
-    background: #111;
-    border: 2px solid #0ff;
-    padding: 10px;
-    margin: 8px 0;
-    border-radius: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.7rem;
-    text-shadow: 1px 1px #000;
-    position: relative;
-    z-index: 2;
-}
-
-
-/* Guidance text */
-
-.guidance {
-    margin-top: 10px;
-    background: #222;
-    border: 2px dashed #ff0;
-    padding: 8px;
-    border-radius: 0;
-    font-style: normal;
-    font-family: 'Press Start 2P', monospace;
-    color: #0ff;
-    position: relative;
-    z-index: 2;
-}
-
-
-/* Achievements badge */
+/* BADGES */
 
 .badge {
     display: inline-block;
-    font-size: 1.2rem;
-    margin: 5px;
+    margin: 2px 5px;
+    padding: 4px 8px;
+    background: #ff0;
+    color: #000;
+    border: 2px solid #fff;
     cursor: pointer;
-    font-family: 'Press Start 2P', monospace;
-    transition: transform 0.1s, color 0.2s;
-    color: #ff0;
-    text-shadow: 1px 1px #000;
-    position: relative;
-    z-index: 2;
-}
-
-.badge:hover {
-    transform: scale(1.3);
-    color: #0ff;
-    animation: pixel-confetti 0.5s ease-in-out;
-}
-
-@keyframes pixel-confetti {
-    0% {
-        text-shadow: 1px 1px #ff0, -1px -1px #0ff, 1px -1px #f0f, -1px 1px #0f0;
-    }
-    25% {
-        text-shadow: -1px 1px #ff0, 1px -1px #0ff, -1px -1px #f0f, 1px 1px #0f0;
-    }
-    50% {
-        text-shadow: 1px -1px #ff0, -1px 1px #0ff, 1px 1px #f0f, -1px -1px #0f0;
-    }
-    75% {
-        text-shadow: -1px -1px #ff0, 1px 1px #0ff, -1px 1px #f0f, 1px -1px #0f0;
-    }
-    100% {
-        text-shadow: 1px 1px #ff0, -1px -1px #0ff, 1px -1px #f0f, -1px 1px #0f0;
-    }
+    font-size: 10px;
+    text-align: center;
 }
 
 
-/* Q&A items */
+/* INPUTS AND BUTTONS */
 
-.qa-item {
-    background: #111;
-    border: 2px solid #0ff;
-    padding: 8px;
-    margin: 5px 0;
-    border-radius: 0;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.7rem;
-    position: relative;
-    z-index: 2;
-}
-
-
-/* Checkbox custom routine */
-
+input[type="text"],
 input[type="checkbox"] {
-    transform: scale(1.5);
-    margin-right: 8px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    margin: 5px;
+}
+
+button {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    margin: 5px;
+    padding: 6px 10px;
+    background: #0f0;
+    color: #000;
+    border: 2px solid #fff;
+    cursor: pointer;
+    text-shadow: 1px 1px #000;
+    transition: all 0.2s;
+}
+
+button:hover {
+    background: #0ff;
+    color: #000;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #0ff;
 }
 
 
-/* Responsive chart */
+/* WORKOUT ITEMS */
+
+.workout-item {
+    background: #111;
+    border: 2px solid #0f0;
+    margin: 5px 0;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.workout-item label {
+    margin-left: 10px;
+    font-size: 10px;
+}
+
+.guidance {
+    font-size: 12px;
+    margin-top: 5px;
+    color: #0ff;
+    text-shadow: 1px 1px #000;
+}
+
+
+/* CHART */
 
 canvas {
-    max-width: 100% !important;
-    image-rendering: pixelated;
-    position: relative;
-    z-index: 2;
+    background: #111 !important;
+    border: 2px solid #0f0;
+    margin-top: 10px;
 }
 
 
-/* Small mobile adjustments */
+/* PREDEFINED QUESTIONS */
 
-@media (max-width: 600px) {
-    .app-container {
-        padding: 10px;
-    }
-    h1 {
-        font-size: 1.5rem;
-    }
-    button {
-        padding: 6px 10px;
-        font-size: 0.6rem;
-    }
+div>button {
+    font-size: 10px;
+    margin: 3px;
+    padding: 4px 6px;
+}
+
+
+/* INPUT FOCUS */
+
+input:focus {
+    outline: 2px solid #0ff;
 }
