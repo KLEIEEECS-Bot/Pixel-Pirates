@@ -116,113 +116,118 @@ function App() {
     };
 
     return ( <
-        div className = "app-container" >
-        <
-        h1 > 🎮FitQuest < /h1>
+            div className = "app-container" >
+            <
+            h1 > 🏋🏻FitQuest < /h1>
 
-        { /* User Creation */ } <
-        div >
-        <
-        input placeholder = "Username"
-        value = { username }
-        onChange = { e => setUsername(e.target.value) }
-        /> <
-        button onClick = { createUser } > Create User < /button> <
-        /div>
+            { /* User Creation */ } <
+            div >
+            <
+            input placeholder = "Username"
+            value = { username }
+            onChange = { e => setUsername(e.target.value) }
+            /> <
+            button onClick = { createUser } > Create User < /button> < /
+            div >
 
-        { /* Level Selection */ } <
-        div >
-        <
-        h2 > Level: { level } < /h2> <
-        button onClick = {
-            () => setLevel("beginner") } > Beginner < /button> <
-        button onClick = {
-            () => setLevel("intermediate") } > Intermediate < /button> <
-        button onClick = {
-            () => setLevel("advanced") } > Advanced < /button> <
-        /div>
+            { /* Level Selection */ } <
+            div >
+            <
+            h2 > Level: { level } < /h2> <
+            button onClick = {
+                () => setLevel("beginner")
+            } > Beginner < /button> <
+            button onClick = {
+                () => setLevel("intermediate")
+            } > Intermediate < /button> <
+            button onClick = {
+                () => setLevel("advanced")
+            } > Advanced < /button> < /
+            div >
 
-        { /* Workouts */ } <
-        h3 > Workout Recommendations < /h3> {
+            { /* Workouts */ } <
+            h3 > Workout Recommendations < /h3> {
             workouts.map(w => ( <
                 div key = { w }
                 className = "workout-item" > { w } <
                 button onClick = {
-                    () => completeWorkout(w) } > Complete✅ < /button> <
+                    () => completeWorkout(w)
+                } > Complete✅ < /button> <
                 button onClick = {
-                    () => getGuidance(w) } > Guidance🛈 < /button> <
-                /div>
+                    () => getGuidance(w)
+                } > Guidance🛈 < /button> < /
+                div >
             ))
         } <
         p className = "guidance" > { guidanceText } < /p>
 
-        { /* Progress Chart */ } <
-        h3 > Progress Chart < /h3> { progress.length > 0 ? < Line data = { chartData }
-            /> : <p>No workouts completed yet.</p > }
+    { /* Progress Chart */ } <
+    h3 > Progress Chart < /h3> { progress.length > 0 ? < Line data = { chartData } /
+        >: < p > No workouts completed yet. < /p > }
 
-        { /* Achievements */ } <
-        h3 > Achievements < /h3> {
-            progress.length > 0 && ( <
-                div > {
-                    progress.map((_, i) =>
-                        (i + 1) % 5 === 0 ? ( <
-                            span key = { i }
-                            className = "badge"
-                            onClick = {
-                                () => alert(`You earned a badge for ${i + 1} workouts! 🎉`) } >
-                            🏅
-                            <
-                            /span>
-                        ) : null
-                    )
-                } <
-                /div>
+    { /* Achievements */ } <
+    h3 > Achievements < /h3> {
+    progress.length > 0 && ( <
+        div > {
+            progress.map((_, i) =>
+                (i + 1) % 5 === 0 ? ( <
+                    span key = { i }
+                    className = "badge"
+                    onClick = {
+                        () => alert(`You earned a badge for ${i + 1} workouts! 🎉`)
+                    } > 🏅
+                    <
+                    /span>
+                ) : null
             )
-        }
-
-        { /* Q&A */ } <
-        h3 > Ask a Question < /h3> <
-        input placeholder = "Type your question"
-        value = { question }
-        onChange = { e => setQuestion(e.target.value) }
-        /> <
-        button onClick = { postQuestion } > Ask < /button>
-
-        <
-        h3 > Previous Q & A < /h3> {
-            qaList.map((qa, i) => ( <
-                div key = { i }
-                className = "qa-item" >
-                <
-                b > { qa.username }: < /b> {qa.question} <br / >
-                <
-                i > Answer: { qa.answer } < /i> <
-                /div>
-            ))
-        }
-
-        { /* Custom Routine */ } <
-        h3 > Build Your Custom Routine < /h3> {
-            workouts.map(w => ( <
-                div key = { w } >
-                <
-                input type = "checkbox"
-                value = { w }
-                onChange = {
-                    e => {
-                        const checked = e.target.checked;
-                        setSelectedExercises(prev =>
-                            checked ? [...prev, w] : prev.filter(x => x !== w)
-                        );
-                    }
-                }
-                /> {w} <
-                /div>
-            ))
         } <
-        button onClick = { saveRoutine } > Save Routine✅ < /button> <
         /div>
-    );
+    )
+}
+
+{ /* Q&A */ } <
+h3 > Ask a Question < /h3> <
+input placeholder = "Type your question"
+value = { question }
+onChange = { e => setQuestion(e.target.value) }
+/> <
+button onClick = { postQuestion } > Ask < /button>
+
+<
+h3 > Previous Q & A < /h3> {
+qaList.map((qa, i) => ( <
+    div key = { i }
+    className = "qa-item" >
+    <
+    b > { qa.username }: < /b> {qa.question} <br / >
+    <
+    i > Answer: { qa.answer } < /i> < /
+    div >
+))
+}
+
+{ /* Custom Routine */ } <
+h3 > Build Your Custom Routine < /h3> {
+workouts.map(w => ( <
+    div key = { w } >
+    <
+    input type = "checkbox"
+    value = { w }
+    onChange = {
+        e => {
+            const checked = e.target.checked;
+            setSelectedExercises(prev =>
+                checked ? [...prev, w] : prev.filter(x => x !== w)
+            );
+        }
+    }
+    /> {w} < /
+    div >
+))
+} <
+button onClick = { saveRoutine } > Save Routine✅ < /button> < /
+    div >
+);
 }
 
 export default App;
