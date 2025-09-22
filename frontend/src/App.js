@@ -184,7 +184,7 @@ function App() {
             setProgress(newProgress);
             const newXp = ((userProfile.xp !== undefined && userProfile.xp !== null) ? userProfile.xp : 0) + xpPerWorkout;
             awardProgressRewards(newProgress.length, newXp);
-            localStorage.setItem(`fitquest_${username}_progress`, JSON.stringify(newProgress));
+            localStorage.setItem(`genfit_${username}_progress`, JSON.stringify(newProgress));
             alert(`Workout recorded locally. (${name})`);
         }
     };
@@ -210,7 +210,7 @@ function App() {
             await axios.post("http://localhost:5000/api/routine", { username, exercises: selectedExercises });
             alert("Custom routine saved to server!");
         } catch (err) {
-            const key = `fitquest_${username}_routines`;
+            const key = `genfit_${username}_routines`;
             const prev = JSON.parse(localStorage.getItem(key) || "[]");
             prev.push({ name: `Routine ${prev.length + 1}`, exercises: selectedExercises, savedAt: new Date().toISOString() });
             localStorage.setItem(key, JSON.stringify(prev));
@@ -259,7 +259,7 @@ function App() {
     return ( <
         div className = "app-container" >
         <
-        h1 > 🏋🏻FitQuest < /h1>
+        h1 > 🏋🏻GenFit < /h1>
 
         { /* PROFILE */ } <
         div className = "profile" >
@@ -276,17 +276,22 @@ function App() {
         div className = "progress-bar-fill"
         style = {
             { width: `${xpPct}%` } }
-        title = { `${xpPct}% to next milestone` } > < /div> <
+        title = { `${xpPct}% to next milestone` } >
+        < /div> <
         /div> <
         div >
         <
-        strong > Badges: < /strong>{" "}  {
-            userProfile.badges && userProfile.badges.length === 0 ? "None" : userProfile.badges.map((b, idx) => ( <
-                span key = { idx }
-                className = "badge"
-                onClick = {
-                    () => alert(`Badge: ${b}`) } > { b } < /span>
-            ))
+        strong > Badges: < /strong>{" "} {
+            userProfile.badges && userProfile.badges.length === 0 ?
+                "None" :
+                userProfile.badges.map((b, idx) => ( <
+                    span key = { idx }
+                    className = "badge"
+                    onClick = {
+                        () => alert(`Badge: ${b}`) } >
+                    { b } <
+                    /span>
+                ))
         } <
         /div> <
         /div>
@@ -326,7 +331,7 @@ function App() {
                 checked = { allowedExercises.includes(w.id) }
                 onChange = {
                     () => toggleAllowedExercise(w.id) }
-                /> {w.name}({w.difficulty}) <
+                /> { w.name }({ w.difficulty }) <
                 /label>
             ))
         } <
@@ -334,13 +339,20 @@ function App() {
 
         { /* WORKOUT RECOMMENDATIONS */ } <
         h3 > Workout Recommendations < /h3> {
-            workouts.filter(w => allowedExercises.includes(w.id)).length === 0 && < p > No exercises selected— pick ones above. < /p>} {
-                workouts.filter(w => allowedExercises.includes(w.id)).map((w) => ( <
+            workouts.filter((w) => allowedExercises.includes(w.id)).length === 0 && ( <
+                p > No exercises selected— pick ones above. < /p>
+            )
+        } {
+            workouts
+                .filter((w) => allowedExercises.includes(w.id))
+                .map((w) => ( <
                     div key = { w.id }
                     className = "workout-item" >
                     <
-                    div > < strong > { w.name } < /strong> ({w.difficulty})</div >
+                    div >
                     <
+                    strong > { w.name } < /strong> ({w.difficulty}) <
+                    /div> <
                     button onClick = {
                         () => completeWorkout(w) } > Complete✅ < /button> <
                     button onClick = {
@@ -356,39 +368,40 @@ function App() {
                     /label> <
                     /div>
                 ))
-            }
+        }
 
-            <
-            p className = "guidance" > { guidanceText } < /p>
+        <
+        p className = "guidance" > { guidanceText } < /p>
 
-            { /* PROGRESS CHART */ } <
-            h3 > Progress Chart < /h3> { progress.length > 0 ? < Line data = { chartData }
-                /> : <p>No workouts completed yet.</p > }
+        { /* PROGRESS CHART */ } <
+        h3 > Progress Chart < /h3> { progress.length > 0 ? < Line data = { chartData }
+            /> : <p>No workouts completed yet.</p > }
 
-            { /* QA SECTION */ } <
-            h3 > Ask a Fitness Question < /h3> <
-                input placeholder = "Type question..."
-            value = { question }
-            onChange = {
-                (e) => setQuestion(e.target.value) }
-            /> <
-            button onClick = { postQuestion } > Ask < /button> <
-                div >
-                <
-                strong > Predefined Questions: < /strong> {
-                    predefinedQA.map((q) => ( <
-                        button key = { q.id }
-                        onClick = {
-                            () => setQuestion(q.question) } > { q.question } < /button>
-                    ))
-                } <
-                /div>
+        { /* QA SECTION */ } <
+        h3 > Ask a Fitness Question < /h3> <
+        input placeholder = "Type question..."
+        value = { question }
+        onChange = {
+            (e) => setQuestion(e.target.value) }
+        /> <
+        button onClick = { postQuestion } > Ask < /button> <
+        div >
+        <
+        strong > Predefined Questions: < /strong> {
+            predefinedQA.map((q) => ( <
+                button key = { q.id }
+                onClick = {
+                    () => setQuestion(q.question) } > { q.question } <
+                /button>
+            ))
+        } <
+        /div>
 
-            { /* ROUTINE SAVE */ } <
-            h3 > Save Custom Routine < /h3> <
-                button onClick = { saveRoutine } > Save Routine < /button> <
-                /div>
-        );
-    }
+        { /* ROUTINE SAVE */ } <
+        h3 > Save Custom Routine < /h3> <
+        button onClick = { saveRoutine } > Save Routine < /button> <
+        /div>
+    );
+}
 
-    export default App;
+export default App;
