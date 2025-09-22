@@ -6,20 +6,24 @@
 body {
     margin: 0;
     padding: 0;
-    background: #1a1a1a;
+    background: #051824;
+    /* darkest background */
     font-family: 'Press Start 2P', cursive;
     /* pixel font */
-    color: #fff;
+    color: #27e9b5;
+    /* neon mint text */
 }
 
 .app-container {
     max-width: 900px;
     margin: 20px auto;
     padding: 20px;
-    background: #222;
-    border: 4px solid #00ff00;
+    background: #162936;
+    /* deep teal */
+    border: 4px solid #27e9b5;
+    /* neon border */
     border-radius: 10px;
-    box-shadow: 0 0 20px #0f0;
+    box-shadow: 0 0 20px #27e9b5;
 }
 
 
@@ -28,6 +32,7 @@ body {
 h1,
 h2,
 h3 {
+    color: #27e9b5;
     text-shadow: 2px 2px #000;
 }
 
@@ -37,15 +42,16 @@ h3 {
 .profile {
     margin-bottom: 20px;
     padding: 10px;
-    background: #111;
-    border: 2px dashed #0f0;
+    background: #3b5265;
+    /* slate blue-gray */
+    border: 2px dashed #27e9b5;
 }
 
 .progress-bar-container {
     width: 100%;
     height: 20px;
-    background: #333;
-    border: 2px solid #0f0;
+    background: #162936;
+    border: 2px solid #27e9b5;
     border-radius: 4px;
     margin: 5px 0 10px;
     overflow: hidden;
@@ -53,7 +59,7 @@ h3 {
 
 .progress-bar-fill {
     height: 100%;
-    background: linear-gradient(90deg, #0f0, #0f0a);
+    background: linear-gradient(90deg, #27e9b5, #3b5265);
     transition: width 0.5s;
 }
 
@@ -64,12 +70,13 @@ h3 {
     display: inline-block;
     margin: 2px 5px;
     padding: 4px 8px;
-    background: #ff0;
-    color: #000;
-    border: 2px solid #fff;
+    background: #27e9b5;
+    color: #051824;
+    border: 2px solid #3b5265;
     cursor: pointer;
     font-size: 10px;
     text-align: center;
+    text-shadow: 1px 1px #000;
 }
 
 
@@ -80,6 +87,10 @@ input[type="checkbox"] {
     font-family: 'Press Start 2P', cursive;
     font-size: 12px;
     margin: 5px;
+    background: #162936;
+    color: #27e9b5;
+    border: 2px solid #3b5265;
+    padding: 4px;
 }
 
 button {
@@ -87,27 +98,27 @@ button {
     font-size: 12px;
     margin: 5px;
     padding: 6px 10px;
-    background: #0f0;
-    color: #000;
-    border: 2px solid #fff;
+    background: #27e9b5;
+    color: #051824;
+    border: 2px solid #3b5265;
     cursor: pointer;
     text-shadow: 1px 1px #000;
     transition: all 0.2s;
 }
 
 button:hover {
-    background: #0ff;
-    color: #000;
+    background: #3b5265;
+    color: #27e9b5;
     transform: scale(1.05);
-    box-shadow: 0 0 10px #0ff;
+    box-shadow: 0 0 10px #27e9b5;
 }
 
 
 /* WORKOUT ITEMS */
 
 .workout-item {
-    background: #111;
-    border: 2px solid #0f0;
+    background: #162936;
+    border: 2px solid #27e9b5;
     margin: 5px 0;
     padding: 8px;
     display: flex;
@@ -119,12 +130,13 @@ button:hover {
 .workout-item label {
     margin-left: 10px;
     font-size: 10px;
+    color: #27e9b5;
 }
 
 .guidance {
     font-size: 12px;
     margin-top: 5px;
-    color: #0ff;
+    color: #27e9b5;
     text-shadow: 1px 1px #000;
 }
 
@@ -132,8 +144,8 @@ button:hover {
 /* CHART */
 
 canvas {
-    background: #111 !important;
-    border: 2px solid #0f0;
+    background: #051824 !important;
+    border: 2px solid #27e9b5;
     margin-top: 10px;
 }
 
@@ -150,5 +162,5 @@ div>button {
 /* INPUT FOCUS */
 
 input:focus {
-    outline: 2px solid #0ff;
+    outline: 2px solid #27e9b5;
 }
